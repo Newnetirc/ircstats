@@ -1,0 +1,2 @@
+# ircstats
+IRC Channel Stats
