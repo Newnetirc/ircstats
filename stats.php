@@ -36,7 +36,7 @@ function stats_shortcode() {
                     <?php foreach($stats->channels as $channel): ?>
                         <tr>
                             <td><a href="<?=$channel->webchatlink?>"><?=htmlspecialchars($channel->name)?></a></td>
-                            <<td><?=htmlspecialchars($channel->usercount)?></td>
+                            <td><?=htmlspecialchars($channel->usercount)?></td>
                             <td style="word-wrap: break-word; white-space: pre-wrap; max-width:700px"><?=htmlspecialchars($channel->topic)?></td>
                         </tr>
                     <?php endforeach; ?>
