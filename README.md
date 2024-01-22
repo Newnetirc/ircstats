@@ -1,5 +1,5 @@
-# ircstats
-IRC Channel Stats
+# ircstats wordpress plugin
+IRC Channel Stats for wordpress
 
 
 
