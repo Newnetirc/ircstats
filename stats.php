@@ -21,7 +21,6 @@ function stats_shortcode() {
         <p>there are <?=htmlspecialchars($stats->usercount)?> users across <?=htmlspecialchars($stats->channelcount)?> channels.</p>
         <p>if the channel is set with <a href="https://docs.inspircd.org/3/modes/#channel-modes">chanmode +s</a> it will be omitted from this list.</p>
         <p>the table is sortable by clicking on the column headers</p>
-
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
                 <thead>
