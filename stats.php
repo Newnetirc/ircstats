@@ -13,7 +13,19 @@ Author: ChatGPT
 Author URI: https://chat.openai.com
 License: LGPLv2.1
 */
-
+function fetch_stats() {
+    $url = "https://stats.newnet.net/stats.json";
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    $response = curl_exec($ch);
+    if (curl_errno($ch)) {
+        curl_close($ch);
+        return null; // or handle the error as needed
+    }
+    curl_close($ch);
+    return json_decode($response);
+}
 function stats_shortcode() {
     $stats = fetch_stats();
     if (!$stats) {
