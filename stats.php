@@ -15,12 +15,15 @@ License: LGPLv2.1
 */
 
 function stats_shortcode() {
-    $stats = json_decode(file_get_contents("https://stats.newnet.net/stats.json"));
+    $stats = fetch_stats();
+    if (!$stats) {
+        return '<p>Unable to fetch statistics at this time. Please try again later.</p>';
+    }
     ob_start();
     ?>
-        <p>there are <?=htmlspecialchars($stats->usercount)?> users across <?=htmlspecialchars($stats->channelcount)?> channels.</p>
-        <p>if the channel is set with <a href="https://docs.inspircd.org/3/modes/#channel-modes">chanmode +s</a> it will be omitted from this list.</p>
-        <p>the table is sortable by clicking on the column headers</p>
+        <p>There are <?=htmlspecialchars($stats->usercount)?> users across <?=htmlspecialchars($stats->channelcount)?> channels.</p>
+        <p>If the channel is set with <a href="https://docs.inspircd.org/3/modes/#channel-modes">chanmode +s</a> it will be omitted from this list.</p>
+        <p>The table is sortable by clicking on the column headers.</p>
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-hover">
                 <thead>
@@ -34,7 +37,7 @@ function stats_shortcode() {
                 <tbody data-link="row" class="rowlink">
                     <?php foreach($stats->channels as $channel): ?>
                         <tr>
-                            <td><a href="<?=$channel->webchatlink?>"><?=htmlspecialchars($channel->name)?></a></td>
+                            <td><a href="<?=htmlspecialchars($channel->webchatlink)?>"><?=htmlspecialchars($channel->name)?></a></td>
                             <td><?=htmlspecialchars($channel->usercount)?></td>
                             <td style="word-wrap: break-word; white-space: pre-wrap; max-width:700px"><?=htmlspecialchars($channel->topic)?></td>
                         </tr>
@@ -43,7 +46,7 @@ function stats_shortcode() {
             </table>
         </div>
         <hr>
-        <p>also available as <a href="https://stats.newnet.net/stats.json">json</a>.</p>
+        <p>Also available as <a href="https://stats.newnet.net/stats.json">JSON</a>.</p>
 
         <script>
             // sort stats page
